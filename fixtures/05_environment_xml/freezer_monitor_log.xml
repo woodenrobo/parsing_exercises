@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env:monitorLog xmlns:env="http://example.org/env-monitor" generatedAt="2026-02-19T02:00:00Z" site="BOS">
+  <env:instrument id="FREEZER-07" model="Thermo TSX600">
+    <env:location building="B1" room="118" zone="Cold Storage" />
+    <env:readings>
+      <env:reading timestamp="2026-02-19T01:00:00Z" tempC="-79.8" humidityPct="32.1" doorOpen="false" />
+      <env:reading timestamp="2026-02-19T01:05:00Z" tempC="-78.9" humidityPct="32.5" doorOpen="true" />
+      <env:reading timestamp="2026-02-19T01:10:00Z" tempC="-77.1" humidityPct="33.0" doorOpen="true" />
+      <env:reading timestamp="2026-02-19T01:15:00Z" tempC="-79.0" humidityPct="32.2" doorOpen="false" />
+    </env:readings>
+    <env:alarms>
+      <env:alarm code="TEMP_HIGH" openedAt="2026-02-19T01:07:10Z" closedAt="2026-02-19T01:18:42Z" severity="high">
+        <env:description>Temperature exceeded -78.0 C for 2 consecutive readings</env:description>
+      </env:alarm>
+    </env:alarms>
+  </env:instrument>
+</env:monitorLog>

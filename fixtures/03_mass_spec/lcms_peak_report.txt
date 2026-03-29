@@ -1,0 +1,33 @@
+LCMS BATCH REPORT
+Instrument............. Thermo Q Exactive Plus
+Acquisition Date....... 2026-02-18 14:42:01
+Operator............... ariya.patel
+Ion Mode............... Positive
+Processing Method...... intact_screen_v2
+
+[Sample Summary]
+Sample Name         File Name                Inj#   Type     Status
+CAL_1               cal_1.raw               1      Cal      Acquired
+CAL_2               cal_2.raw               2      Cal      Acquired
+QC_MID              qc_mid.raw              3      QC       Acquired
+UNK_201             unk_201.raw             4      Unknown  Acquired
+UNK_202             unk_202.raw             5      Unknown  Acquired
+UNK_203             unk_203.raw             6      Unknown  Failed
+
+[Peak Table: UNK_201]
+#  Compound           Expected_mz    Observed_mz    RT(min)   Area       S/N     Score
+1  Acetaminophen      152.0712       152.0710       1.84      834422     144.2   98.4
+2  Caffeine           195.0877       195.0875       2.16      392118     101.9   97.1
+3  Impurity_A         210.0550       210.0541       2.44      18221      11.5    61.8
+
+[Peak Table: UNK_202]
+#  Compound           Expected_mz    Observed_mz    RT(min)   Area       S/N     Score
+1  Acetaminophen      152.0712       152.0713       1.83      801115     138.7   98.8
+2  Caffeine           195.0877       195.0880       2.17      407554     105.3   96.9
+3  Impurity_A         210.0550       210.0602       2.62      9055       4.0     22.1
+
+[System Suitability]
+Metric                         Value      Acceptance
+Mass Accuracy (ppm)            1.8        <= 3.0
+RT Drift (min)                 0.04       <= 0.10
+Calibration Curve R2           0.9991     >= 0.9950

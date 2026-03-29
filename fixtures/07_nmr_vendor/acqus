@@ -1,0 +1,15 @@
+##TITLE= Bruker BioSpin acquisition parameters
+##JCAMPDX= 5.00 Bruker JCAMP library
+##DATA TYPE= Parameter Values
+##ORIGIN= BRUKER BIOSPIN GMBH
+##OWNER= lev.practice
+##$EXP= proton_screen
+##$DATE= 1771070400
+##$NUC1= <1H>
+##$BF1= 400.1324706
+##$SW_h= 8012.8205
+##$TD= 16
+##$NS= 8
+##$D[1]= 1.0000000
+##$RG= 64
+##END=
