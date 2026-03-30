@@ -1,34 +1,44 @@
-import io
 import re
+from pathlib import Path
 
 import pandas as pd
 
+
+def parse_separated_file(
+    path: str, separator: str, meta_lines_prefix: str, include_meta: bool = False
+) -> pd.DataFrame:
+
+    if not re.findall(r".tsv$|.csv$", path):
+        raise ValueError("Import file is not tsv or csv")
+
+    with Path.open(Path(path), encoding="utf-8") as file:
+        raw_text = file.read()
+
+    line_split = raw_text.split("\n")
+
+    if not include_meta:
+        line_split = [
+            line for line in line_split if not line.startswith(meta_lines_prefix)
+        ]
+
+    line_split = [line for line in line_split if line != ""]
+
+    colnames = line_split[0].split(separator)
+
+    no_colnames_lines = [line.split(separator) for line in line_split[1:]]
+
+    out_df = pd.DataFrame(data=no_colnames_lines, columns=colnames)
+    out_df = out_df.apply(lambda col: pd.to_numeric(col, errors="coerce").fillna(col))  # type: ignore
+    out_df = out_df.fillna(value=0)
+
+    return out_df
+
+
 FILE_PATH = "./fixtures/01_hplc/hplc_sequence_report.tsv"
-
 SEP = "\t"
-LINE_BREAK = "\n"
+META_PREFIX = "#"
 
-if not re.findall(r".tsv$", FILE_PATH):
-    raise ValueError("Import file is not tsv")
-
-raw_text = io.open(FILE_PATH).read()
-
-line_split = raw_text.split(LINE_BREAK)
-
-no_meta_lines = [line for line in line_split if not line.startswith("#")]
-
-no_empty_lines = [line for line in no_meta_lines if not line == ""]
-
-colnames = no_empty_lines[0].split(SEP)
-
-no_colnames_lines = [line.split(SEP) for line in no_empty_lines[1:]]
-
-
-df = pd.DataFrame(data=no_colnames_lines, columns=colnames)
-df = df.apply(lambda col: pd.to_numeric(col, errors='coerce').fillna(col)) # type: ignore
-df = df.fillna(value=0)
-
-
+df = parse_separated_file(FILE_PATH, SEP, META_PREFIX)
 
 # data transformation exercises
 controls = df[df["sample_id"].str.startswith("STD")]
@@ -39,8 +49,7 @@ samples = df[df["sample_id"].str.startswith("SMP")]
 
 df["result_mg_ml_post_dilution"] = df["result_mg_ml"] / df["dilution_factor"]
 
-df.loc[df["qc_flag"]!="PASS", "cave"] = "CAVE"
-df.loc[df["qc_flag"]=="PASS", "cave"] = "PASS"
+df.loc[df["qc_flag"] != "PASS", "cave"] = "CAVE"
+df.loc[df["qc_flag"] == "PASS", "cave"] = "PASS"
 
-pass_rate = sum(df["qc_flag"] == "PASS")/len(df)
-
+pass_rate = sum(df["qc_flag"] == "PASS") / len(df)

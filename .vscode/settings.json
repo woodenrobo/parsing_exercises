@@ -1,0 +1,20 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.venv": true,
+        "**/*.pyc": true,
+        "**/bruno-backend": true,
+        "**/build": true
+    },
+    "pylint.args": [
+        "--disable=missing-function-docstring",
+        "--disable=missing-module-docstring",
+        "--disable=missing-class-docstring",
+    ],
+    "ruff.lineLength": null
+}

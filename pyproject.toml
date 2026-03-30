@@ -4,4 +4,56 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "pandas>=3.0.1",
+    "pytest>=9.0.2",
+    "ruff>=0.15.8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "N",      # pep8-naming
+    "UP",     # pyupgrade
+    "ANN",    # flake8-annotations (THIS IS KEY!)
+    "ASYNC",  # flake8-async
+    "S",      # flake8-bandit
+    "B",      # flake8-bugbear
+    "A",      # flake8-builtins
+    "C4",     # flake8-comprehensions
+    "DTZ",    # flake8-datetimez
+    "T10",    # flake8-debugger
+    "ISC",    # flake8-implicit-str-concat
+    "PIE",    # flake8-pie
+    "PT",     # flake8-pytest-style
+    "RSE",    # flake8-raise
+    "RET",    # flake8-return
+    "SIM",    # flake8-simplify
+    "ARG",    # flake8-unused-arguments
+    "PTH",    # flake8-use-pathlib
+    "ERA",    # eradicate
+    "PL",     # pylint
+    "RUF",    # Ruff-specific rules
+]
+
+ignore = [
+    "ANN101",  # Missing type annotation for self
+    "ANN102",  # Missing type annotation for cls
+    "B008",    # Allow function calls in argument defaults (FastAPI pattern)
+    "PLR0913",  # Too many arguments
+    "S101", # Use of assert
+    "S105", # Possible hardcoded password
+    "S106", # Possible hardcoded password
+]
